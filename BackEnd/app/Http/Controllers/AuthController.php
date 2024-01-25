@@ -12,7 +12,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        
     }
 
     public function register() {
@@ -66,11 +66,10 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         return response()->json([
-            'name'         => auth('api')->user()->name,
-            'email'        => auth('api')->user()->email,
             'access_token' => $token,
             'token_type'   => 'bearer',
             'expires_in'   => auth()->factory()->getTTL() * 60,
+            'user'         => auth('api')->user()
             
         ]);
     }
