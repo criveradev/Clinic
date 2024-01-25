@@ -12,26 +12,29 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        
+        //$this->middleware('auth:api', ['except' => ['login']]);
     }
 
-    public function register() {
+    public function register()
+    {
+        $this->authorize('create',User::class);
+
         $validator = Validator::make(request()->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
- 
-        if($validator->fails()){
+
+        if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
- 
+
         $user = new User();
         $user->name = request()->name;
         $user->email = request()->email;
         $user->password = bcrypt(request()->password);
         $user->save();
- 
+
         return response()->json($user, Response::HTTP_ACCEPTED);
     }
 
@@ -39,7 +42,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -70,7 +73,7 @@ class AuthController extends Controller
             'token_type'   => 'bearer',
             'expires_in'   => auth()->factory()->getTTL() * 60,
             'user'         => auth('api')->user()
-            
+
         ]);
     }
 }

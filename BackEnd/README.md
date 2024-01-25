@@ -22,3 +22,10 @@
 # Revisar las rutas
 
     % php artisan route:list --path=api
+
+# Roles y permisos
+     % https://spatie.be/docs/laravel-permission/v6/installation-laravel
+
+# Politicas de acceso
+
+    % php artisan make:policy UserPolicy --model=user
