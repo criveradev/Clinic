@@ -20,3 +20,15 @@
     % config
     % config.ts
 
+# Creamos un nuevo modulo
+
+    % ng g m medical --routing
+    % ng g m medical/roles --routing
+
+# Con su respectivo compnente
+
+    % ng g c medical --skip-tests
+    % ng g c medical/roles --skip-tests
+    % ng g c medical/roles/add-role-user --skip-tests
+    % ng g c medical/roles/edit-role-user --skip-tests
+    % ng g c medical/roles/list-role-user --skip-tests

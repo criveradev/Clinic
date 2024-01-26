@@ -8,7 +8,10 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'login',
   },
-
+  {
+    path: '',
+    loadChildren: () => import('./medical/medical.module').then((m) => m.MedicalModule),
+  },
   {
     path: '',
     loadChildren: () => import('./core/core.module').then((m) => m.CoreModule),
@@ -36,4 +39,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
