@@ -25,6 +25,7 @@
 
 # Roles y permisos
      % https://spatie.be/docs/laravel-permission/v6/installation-laravel
+     % php artisan migrate:refresh --seed --seeder=PermissionsDemoSeeder 
 
 # Politicas de acceso
 
