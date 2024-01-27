@@ -21,7 +21,7 @@
                         <div class="form-group row">
                             <label class="col-form-label col-md-2">Nombre</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control">
+                                <input type="text" [(ngModel)]="name" name="nameInput" class="form-control">
                             </div>
                         </div>
                     </form>
@@ -40,49 +40,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Doctor</td>
-                                        <td>
+                                    <ng-container *ngFor="let side of sideBar">
+                                        <tr>
+                                            <td>{{side.menuValue}}</td>
+                                            <td>
+                                                <div class="" *ngIf="side.subMenus && side.subMenus.length > 0">
+                                                    <ng-container *ngFor="let subMenu of side.subMenus">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="checkbox" (click)="addPermission(subMenu)">
+                                                                {{subMenu.menuValue }}
+                                                            </label>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                                <div class="" *ngIf="side.subMenus && side.subMenus.length == 0">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" name="checkbox" (click)="addPermission(side)">
+                                                            {{side.menuValue }}
+                                                        </label>
+                                                    </div>
 
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Doctor List
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Doctor Add
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Profile Doctor
-                                                </label>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pacientes</td>
-                                        <td>
-
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Paciente List
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Paciente Add
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="checkbox"> Profile Paciente
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
                                 </tbody>
                             </table>
                         </div>

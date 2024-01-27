@@ -30,7 +30,7 @@ export class SidebarComponent {
     router.events.subscribe((event: object) => {
       if (event instanceof NavigationEnd) {
         this.getRoutes(event);
-      }
+       }
     });
     this.getRoutes(this.router);
   }

@@ -9,7 +9,7 @@ import { apiResultFormat } from '../models/models';
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public getDoctorsList(): Observable<apiResultFormat> {
     return this.http.get<apiResultFormat>('assets/json/doctors-list.json').pipe(
@@ -200,32 +200,11 @@ export class DataService {
       separateRoute: false,
       menu: [
         {
-          menuValue: 'Roles',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'gallery',
-          base2: 'profile',
-          icon: 'fa-columns',
-          faIcon: true,
-          subMenus: [
-            {
-              menuValue: 'Registro',
-              route: routes.registerRole,
-              base: routes.registerRole,
-            },
-            {
-              menuValue: 'Listado',
-              route: routes.listadoRole,
-              base: routes.listadoRole,
-            },
-          ],
-        },
-        {
           menuValue: 'Dashboard',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'dashboard',
-          route: 'dashboard',
+          route:'dashboard',
           img: 'assets/img/icons/menu-icon-01.svg',
           subMenus: [
             {
@@ -246,6 +225,45 @@ export class DataService {
           ],
         },
         {
+          menuValue: 'Roles y Permisos',
+          hasSubRoute: true,
+          showSubRoute: false,
+          base: 'gallery',
+          base2: 'profile',
+          icon: 'fa-columns',
+          faIcon: true,
+          subMenus: [
+            {
+              menuValue: 'Registrar Rol',
+              route: routes.registerRole,
+              base: routes.registerRole,
+              permission: 'register_rol',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Listado',
+              route: routes.listadoRole,
+              base: routes.listadoRole,
+              permission: 'list_rol',
+              show_nav: true,
+            },
+            {
+              menuValue: 'Edit Rol',
+              route: '',
+              base: '',
+              permission: 'edit_rol',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Rol',
+              route: '',
+              base: '',
+              permission: 'delete_rol',
+              show_nav: false,
+            },
+          ],
+        },
+        {
           menuValue: 'Doctors',
           hasSubRoute: true,
           showSubRoute: false,
@@ -256,21 +274,36 @@ export class DataService {
               menuValue: 'Doctor List',
               route: routes.doctorsList,
               base: routes.doctorsList,
+              permision: 'list_doctor',
+              show_nav: true,
             },
             {
               menuValue: 'Add Doctor',
               route: routes.addDoctor,
               base: routes.addDoctor,
+              permision: 'register_doctor',
+              show_nav: true,
             },
             {
               menuValue: 'Edit Doctor',
-              route: routes.editDoctor,
-              base: routes.editDoctor,
+              route: '',
+              base: '',
+              permission: 'edit_doctor',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Doctor',
+              route: '',
+              base: '',
+              permission: 'delete_doctor',
+              show_nav: false,
             },
             {
               menuValue: 'Doctor Profile',
               route: routes.doctorProfile,
               base: routes.doctorProfile,
+              permission: 'profile_doctor',
+              show_nav: true,
             },
           ],
         },
@@ -285,21 +318,36 @@ export class DataService {
               menuValue: 'Patients List',
               route: routes.patientsList,
               base: routes.patientsList,
+              permision: 'list_patient',
+              show_nav: true,
             },
             {
               menuValue: 'Add Patients',
               route: routes.addPatient,
               base: routes.addPatient,
+              permission: 'register_patient',
+              show_nav: true,
             },
             {
               menuValue: 'Edit Patients',
-              route: routes.editPatient,
-              base: routes.editPatient,
+              route: '',
+              base: '',
+              permission: 'edit_patient',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Patients',
+              route: '',
+              base: '',
+              permission: 'delete_patient',
+              show_nav: false,
             },
             {
               menuValue: 'Patients Profile',
               route: routes.patientProfile,
               base: routes.patientProfile,
+              permission: 'profile_patient',
+              show_nav: true,
             },
           ],
         },
@@ -314,32 +362,35 @@ export class DataService {
               menuValue: 'Staff List',
               route: routes.staffList,
               base: routes.staffList,
+              permission: 'list_staff',
+              show_nav: true,
             },
             {
               menuValue: 'Add Staff',
               route: routes.addStaff,
               base: routes.addStaff,
+              permission: 'register_staff',
+              show_nav: true,
             },
             {
-              menuValue: 'Staff Profile',
-              route: routes.staffProfile,
-              base: routes.staffProfile,
+              menuValue: 'Edit Staff',
+              route: '',
+              base: '',
+              permission: 'edit_staff',
+              show_nav: false,
             },
             {
-              menuValue: 'Leaves',
-              route: routes.staffLeave,
-              base: routes.staffLeave,
+              menuValue: 'Delete Staff',
+              route: '',
+              base: '',
+              permission: 'delete_staff',
+              show_nav: false,
             },
-            {
-              menuValue: 'Holidays',
-              route: routes.staffHoliday,
-              base: routes.staffHoliday,
-            },
-            {
-              menuValue: 'Attendance',
-              route: routes.staffAttendance,
-              base: routes.staffAttendance,
-            },
+            // {
+            //   menuValue: 'Attendance',
+            //   route: routes.staffAttendance,
+            //   base: routes.staffAttendance,
+            // },
           ],
         },
         {
@@ -353,223 +404,113 @@ export class DataService {
               menuValue: 'Appointment List',
               route: routes.appointmentList,
               base: routes.appointmentList,
+              permision: 'list_appointment',
+              show_nav: true,
             },
             {
               menuValue: 'Book Appointment',
               route: routes.addAppointment,
               base: routes.addAppointment,
+              permision: 'register_appointment',
+              show_nav: true,
             },
             {
               menuValue: 'Edit Appointment',
-              route: routes.editAppointment,
-              base: routes.editAppointment,
+              route: '',
+              base: '',
+              permision: 'edit_appointment',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Appointment',
+              route: '',
+              base: '',
+              permision: 'delete_appointment',
+              show_nav: false,
             },
           ],
         },
         {
-          menuValue: 'Doctor Schedule',
+          menuValue: 'Especialidades',
           hasSubRoute: true,
           showSubRoute: false,
-          base: 'doctor-schedule',
-          img: 'assets/img/icons/menu-icon-05.svg',
-          subMenus: [
-            {
-              menuValue: 'Schedule List',
-              route: routes.schedule,
-              base: routes.schedule,
-            },
-            {
-              menuValue: 'Book Appointment',
-              route: routes.addSchedule,
-              base: routes.addSchedule,
-            },
-            {
-              menuValue: 'Edit Appointment',
-              route: routes.editSchedule,
-              base: routes.editSchedule,
-            },
-          ],
-        },
-        {
-          menuValue: 'Departments',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'departments',
+          base: 'specialtys',
           img: 'assets/img/icons/menu-icon-06.svg',
           subMenus: [
             {
-              menuValue: 'Department List',
+              menuValue: 'Especialidad List',
               route: routes.departmentList,
               base: routes.departmentList,
+              permision: 'list_specialty',
+              show_nav: true,
             },
             {
-              menuValue: 'Add Department',
+              menuValue: 'Add Especialidad',
               route: routes.addDepartment,
               base: routes.addDepartment,
+              permision: 'register_specialty',
+              show_nav: true,
             },
             {
-              menuValue: 'Edit Department',
-              route: routes.editDepartment,
-              base: routes.editDepartment,
+              menuValue: 'Edit Especialidad',
+              route: '',
+              base: '',
+              permision: 'edit_specialty',
+              show_nav: false,
+            },
+            {
+              menuValue: 'Delete Especialidad',
+              route: '',
+              base: '',
+              permision: 'delete_specialty',
+              show_nav: false,
             },
           ],
         },
         {
-          menuValue: 'Accounts',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'accounts',
-          img: 'assets/img/icons/menu-icon-07.svg',
-          subMenus: [
-            {
-              menuValue: 'Invoices',
-              route: routes.invoices,
-              base: routes.invoices,
-            },
-            {
-              menuValue: 'Payments',
-              route: routes.payments,
-              base: routes.payments,
-            },
-            {
-              menuValue: 'Expenses',
-              route: routes.expenses,
-              base: routes.expenses,
-            },
-            {
-              menuValue: 'Taxes',
-              route: routes.taxes,
-              base: routes.taxes,
-            },
-            {
-              menuValue: 'Provident Fund',
-              route: routes.providentFund,
-              base: routes.providentFund,
-            },
-          ],
-        },
-        {
-          menuValue: 'Payroll',
+          menuValue: 'Pagos',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'payroll',
           img: 'assets/img/icons/menu-icon-09.svg',
           subMenus: [
             {
-              menuValue: 'Employee Salary',
+              menuValue: 'Ver Pagos',
               route: routes.salary,
               base: routes.salary,
+              permision: 'show_payment',
+              show_nav: true,
             },
             {
-              menuValue: 'Payslip',
-              route: routes.salaryView,
-              base: routes.salaryView,
+              menuValue: 'Edit Pagos',
+              route: '',
+              base: '',
+              permision: 'edit_payment',
+              show_nav: false,
             },
           ],
         },
         {
-          menuValue: 'Chat',
-          route: routes.chat,
-          hasSubRoute: false,
-          showSubRoute: false,
-          base: 'chat',
-          img: 'assets/img/icons/menu-icon-10.svg',
-          subMenus: [],
-        },
-        {
-          menuValue: 'Call',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'calls',
-          img: 'assets/img/icons/menu-icon-11.svg',
-          subMenus: [
-            {
-              menuValue: 'Voice Call',
-              route: routes.voiceCall,
-              base: routes.voiceCall,
-            },
-            {
-              menuValue: 'Video Call',
-              route: routes.videoCall,
-              base: routes.videoCall,
-            },
-            {
-              menuValue: 'Incoming Call',
-              route: routes.incomingCall,
-              base: routes.incomingCall,
-            },
-          ],
-        },
-        {
-          menuValue: 'Email',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'email',
-          img: 'assets/img/icons/menu-icon-12.svg',
-          subMenus: [
-            {
-              menuValue: 'Compose Mail',
-              route: routes.compose,
-              base: routes.compose,
-            },
-            {
-              menuValue: 'Inbox',
-              route: routes.inbox,
-              base: routes.inbox,
-            },
-            {
-              menuValue: 'Mail View',
-              route: routes.mailView,
-              base: routes.mailView,
-            },
-          ],
-        },
-        {
-          menuValue: 'Blog',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'blogs',
-          img: 'assets/img/icons/menu-icon-13.svg',
-          subMenus: [
-            {
-              menuValue: 'Blog',
-              route: routes.blog,
-              base: routes.blog,
-            },
-            {
-              menuValue: 'Blog View',
-              route: routes.blogDetails,
-              base: routes.blogDetails,
-            },
-            {
-              menuValue: 'Add Blog',
-              route: routes.addBlog,
-              base: routes.addBlog,
-            },
-            {
-              menuValue: 'Edit Blog',
-              route: routes.editBlog,
-              base: routes.editBlog,
-            },
-          ],
-        },
-        {
-          menuValue: 'Assets',
-          route: routes.assetsList,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-cube',
-          faIcon: true,
-          base: 'assets',
-          subMenus: [],
-        },
-        {
-          menuValue: 'activities',
+          menuValue: 'Activities',
           route: routes.activities,
           hasSubRoute: false,
           showSubRoute: false,
           img: 'assets/img/icons/menu-icon-14.svg',
           base: 'activities',
+          permision: 'activitie',
+          show_nav: true,
+          subMenus: [],
+        },
+        {
+          menuValue: 'Calendar',
+          route: routes.calendar,
+          hasSubRoute: false,
+          showSubRoute: false,
+          icon: 'fa-calendar',
+          faIcon: true,
+          base: 'calendar',
+          permision: 'calendar',
+          show_nav: true,
           subMenus: [],
         },
         {
@@ -583,50 +524,15 @@ export class DataService {
               menuValue: 'Expense Report',
               route: routes.expenseReports,
               base: routes.expenseReports,
+              permision: 'expense_report',
+              show_nav: true,
             },
             {
               menuValue: 'Invoice Report',
               route: routes.invoiceReports,
               base: routes.invoiceReports,
-            },
-          ],
-        },
-        {
-          menuValue: 'Invoice',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'invoice',
-          img: 'assets/img/icons/menu-icon-15.svg',
-          subMenus: [
-            {
-              menuValue: 'Invoices List',
-              route: routes.allInvoice,
-              base: routes.allInvoice,
-            },
-            {
-              menuValue: 'Invoice Grid',
-              route: routes.invoicesGrid,
-              base: routes.invoicesGrid,
-            },
-            {
-              menuValue: 'Add Invoices',
-              route: routes.addInvoice,
-              base: routes.addInvoice,
-            },
-            {
-              menuValue: 'Edit Invoices',
-              route: routes.editInvoices,
-              base: routes.editInvoices,
-            },
-            {
-              menuValue: 'Invoices Details',
-              route: routes.viewInvoice,
-              base: routes.viewInvoice,
-            },
-            {
-              menuValue: 'Invoices Settings',
-              route: routes.invoicesSettings,
-              base: routes.invoicesSettings,
+              permision: 'invoice_report',
+              show_nav: true,
             },
           ],
         },
@@ -637,166 +543,17 @@ export class DataService {
           showSubRoute: false,
           img: 'assets/img/icons/menu-icon-16.svg',
           base: 'settings',
+          permision: 'settings',
+          show_nav: true,
           subMenus: [],
         },
-      ],
-    },
-    {
-      tittle: 'UI Elements',
-      showAsTab: false,
-      separateRoute: false,
-      menu: [
-        {
-          menuValue: 'Components',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'components',
-          img: 'assets/img/icons/menu-icon-02.svg',
-          subMenus: [
-            {
-              menuValue: 'UI Kit',
-              route: routes.uikit,
-              base: routes.uikit,
-            },
-            {
-              menuValue: 'Typography',
-              route: routes.typography,
-              base: routes.typography,
-            },
-            {
-              menuValue: 'Tabs',
-              route: routes.tabs,
-              base: routes.tabs,
-            },
-          ],
-        },
-        {
-          menuValue: 'Forms',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'forms',
-          icon: 'fa-edit',
-          faIcon: true,
-          subMenus: [
-            {
-              menuValue: 'Basic Inputs',
-              route: routes.formBasicInputs,
-              base: routes.formBasicInputs,
-            },
-            {
-              menuValue: 'Input Groups',
-              route: routes.formInputGroups,
-              base: routes.formInputGroups,
-            },
-            {
-              menuValue: 'Horizontal Form',
-              route: routes.formHorizontal,
-              base: routes.formHorizontal,
-            },
-            {
-              menuValue: 'Vertical Form',
-              route: routes.formVertical,
-              base: routes.formVertical,
-            },
-          ],
-        },
-        {
-          menuValue: 'Tables',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'tables',
-          icon: 'fa-table',
-          faIcon: true,
-          subMenus: [
-            {
-              menuValue: 'Basic Tables',
-              route: routes.tablesBasic,
-              base: routes.tablesBasic,
-            },
-            {
-              menuValue: 'Data Table',
-              route: routes.tablesDataTables,
-              base: routes.tablesDataTables,
-            },
-          ],
-        },
-        {
-          menuValue: 'Calendar',
-          route: routes.calendar,
-          hasSubRoute: false,
-          showSubRoute: false,
-          icon: 'fa-calendar',
-          faIcon: true,
-          base: 'calendar',
-          subMenus: [],
-        },
-      ],
-    },
-    {
-      tittle: 'Extras',
-      showAsTab: false,
-      separateRoute: false,
-      menu: [
-        {
-          menuValue: 'Pages',
-          hasSubRoute: true,
-          showSubRoute: false,
-          base: 'gallery',
-          base2: 'profile',
-          icon: 'fa-columns',
-          faIcon: true,
-          subMenus: [
-            {
-              menuValue: 'Login',
-              route: routes.login,
-              base: routes.login,
-            },
-            {
-              menuValue: 'Register',
-              route: routes.register,
-              base: routes.register,
-            },
-            {
-              menuValue: 'Forgot Password',
-              route: routes.forgotPassword,
-              base: routes.forgotPassword,
-            },
-            {
-              menuValue: 'Change Password',
-              route: routes.changePassword,
-              base: routes.changePassword,
-            },
-            {
-              menuValue: 'Lock Screen',
-              route: routes.lockScreen,
-              base: routes.lockScreen,
-            },
-            {
-              menuValue: 'Profile',
-              route: routes.profile,
-              base: routes.profile,
-            },
-            {
-              menuValue: 'Gallery',
-              route: routes.gallery,
-              base: routes.gallery,
-            },
-            {
-              menuValue: '404 Error',
-              route: routes.error404,
-              base: routes.error404,
-            },
-            {
-              menuValue: '500 Error',
-              route: routes.error500,
-              base: routes.error500,
-            },
-          ],
-        },
-
       ],
     },
   ];
+  // public sideBarList = [
+    
+  // ];
+
   public carousel1 = [
     {
       quantity: '68',
@@ -861,111 +618,111 @@ export class DataService {
   ];
   public upcomingAppointments = [
     {
-      "no": "R00001",
-      "patientName": "Andrea Lalema",
-      "doctor": "Dr.Jenny Smith",
-      "date": "12.05.2022 at",
-      "time": "7.00 PM",
-      "disease": "Fracture",
-      "img": "assets/img/profiles/avatar-03.jpg"
-    },
-    {
-      "no": "R00002",
-      "patientName": "Cristina Groves",
-      "doctor": "Dr.Angelica Ramos",
-      "date": "13.05.2022 at",
-      "time": "7.00 PM",
-      "disease": "Fever",
-      "img": "assets/img/profiles/avatar-05.jpg"
-    },
-    {
-      "no": "R00003",
-      "patientName": "Bernardo",
-      "doctor": "Dr.Martin Doe",
-      "date": "14.05.2022 at",
-      "time": "7.00 PM",
-      "disease": "Fracture",
-      "img": "assets/img/profiles/avatar-04.jpg"
-    },
-    {
-      "no": "R00004",
-      "patientName": "Galaviz Lalema",
-      "doctor": "Dr.Martin Doe",
-      "date": "15.05.2022 at",
-      "time": "7.00 PM",
-      "disease": "Fracture",
-      "img": "assets/img/profiles/avatar-03.jpg"
-    },
-    {
-      "no": "R00005",
-      "patientName": "Dr.William Jerk",
-      "doctor": "Dr.Angelica Ramos",
-      "date": "16.05.2022 at",
-      "time": "7.00 PM",
-      "disease": "Fever",
-      "img": "assets/img/profiles/avatar-02.jpg"
-    }
+      "no" : "R00001",
+      "patientName" : "Andrea Lalema",
+      "doctor" : "Dr.Jenny Smith",
+      "date" : "12.05.2022 at",
+      "time" : "7.00 PM",
+      "disease" : "Fracture",
+      "img" : "assets/img/profiles/avatar-03.jpg"
+  },
+  {
+      "no" : "R00002",
+      "patientName" : "Cristina Groves",
+      "doctor" : "Dr.Angelica Ramos",
+      "date" : "13.05.2022 at",
+      "time" : "7.00 PM",
+      "disease" : "Fever",
+      "img" : "assets/img/profiles/avatar-05.jpg"
+  },
+  {
+      "no" : "R00003",
+      "patientName" : "Bernardo",
+      "doctor" : "Dr.Martin Doe",
+      "date" : "14.05.2022 at",
+      "time" : "7.00 PM",
+      "disease" : "Fracture",
+      "img" : "assets/img/profiles/avatar-04.jpg"
+  },
+  {
+      "no" : "R00004",
+      "patientName" : "Galaviz Lalema",
+      "doctor" : "Dr.Martin Doe",
+      "date" : "15.05.2022 at",
+      "time" : "7.00 PM",
+      "disease" : "Fracture",
+      "img" : "assets/img/profiles/avatar-03.jpg"
+  },
+  {
+      "no" : "R00005",
+      "patientName" : "Dr.William Jerk",
+      "doctor" : "Dr.Angelica Ramos",
+      "date" : "16.05.2022 at",
+      "time" : "7.00 PM",
+      "disease" : "Fever",
+      "img" : "assets/img/profiles/avatar-02.jpg"
+  }
   ];
   public recentPatients = [
     {
-      "no": "R00001",
-      "patientName": "Andrea Lalema",
-      "age": "21",
-      "date": "12.05.2022 at",
-      "dateOfBirth": "07 January 2002",
-      "diagnosis": "Heart attack",
-      "img": "assets/img/profiles/avatar-02.jpg",
-      "triage": "Non Urgent"
-    },
-    {
-      "no": "R00002",
-      "patientName": "Mark Hay Smith",
-      "age": "23",
-      "date": "13.05.2022 at",
-      "dateOfBirth": "06 January 2002",
-      "diagnosis": "Jaundice",
-      "img": "assets/img/profiles/avatar-03.jpg",
-      "triage": "Emergency"
-    },
-    {
-      "no": "R00003",
-      "patientName": "Cristina Groves",
-      "age": "25",
-      "date": "14.05.2022 at",
-      "dateOfBirth": "10 January 2002",
-      "diagnosis": "Malaria",
-      "img": "assets/img/profiles/avatar-04.jpg",
-      "triage": "Out Patient"
-    },
-    {
-      "no": "R00004",
-      "patientName": "Galaviz Lalema",
-      "age": "21",
-      "date": "15.05.2022 at",
-      "dateOfBirth": "09 January 2002",
-      "diagnosis": "Typhoid",
-      "img": "assets/img/profiles/avatar-05.jpg",
-      "triage": "Urgent"
-    }
+      "no" : "R00001",
+      "patientName" : "Andrea Lalema",
+      "age" : "21",
+      "date" : "12.05.2022 at",
+      "dateOfBirth" : "07 January 2002",
+      "diagnosis" : "Heart attack",
+      "img" : "assets/img/profiles/avatar-02.jpg",
+      "triage" : "Non Urgent"
+  },
+  {
+      "no" : "R00002",
+      "patientName" : "Mark Hay Smith",
+      "age" : "23",
+      "date" : "13.05.2022 at",
+      "dateOfBirth" : "06 January 2002",
+      "diagnosis" : "Jaundice",
+      "img" : "assets/img/profiles/avatar-03.jpg",
+      "triage" : "Emergency"
+  },
+  {
+      "no" : "R00003",
+      "patientName" : "Cristina Groves",
+      "age" : "25",
+      "date" : "14.05.2022 at",
+      "dateOfBirth" : "10 January 2002",
+      "diagnosis" : "Malaria",
+      "img" : "assets/img/profiles/avatar-04.jpg",
+      "triage" : "Out Patient"
+  },
+  {
+      "no" : "R00004",
+      "patientName" : "Galaviz Lalema",
+      "age" : "21",
+      "date" : "15.05.2022 at",
+      "dateOfBirth" : "09 January 2002",
+      "diagnosis" : "Typhoid",
+      "img" : "assets/img/profiles/avatar-05.jpg",
+      "triage" : "Urgent"
+  }
   ];
   public patientProfile = [
     {
-      date: "29/09/2022",
-      doctor: "Dr.Jenny Smith",
-      treatment: "Check up",
-      charges: "$ 60"
+      date : "29/09/2022",
+      doctor : "Dr.Jenny Smith",
+      treatment : "Check up",
+      charges : "$ 60"
     },
     {
-      date: "19/09/2022",
-      doctor: "Andrea Lalema",
-      treatment: "	Blood Test",
-      charges: "$ 50"
+      date : "19/09/2022",
+      doctor : "Andrea Lalema",
+      treatment : "	Blood Test",
+      charges : "$ 50"
     },
     {
-      date: "20/09/2022",
-      doctor: "Dr.William Stephin",
-      treatment: "Blood Pressure",
-      charges: "$ 30"
+      date : "20/09/2022",
+      doctor : "Dr.William Stephin",
+      treatment : "Blood Pressure",
+      charges : "$ 30"
     }
   ];
   public blogs = [
