@@ -12,6 +12,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
+
+
 Route::group(['prefix' => 'auth'], function ($router) {
 
     Route::post('login',    [AuthController::class, 'login']);
@@ -21,4 +23,10 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('me',       [AuthController::class, 'me']);
 });
 
-Route::apiResource('roles',RolesController::class);
+
+
+Route::group(['middleware' => 'auth:api'], function ($router) {
+
+    Route::apiResource('roles', RolesController::class);
+
+});

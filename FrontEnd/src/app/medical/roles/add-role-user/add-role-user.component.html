@@ -24,6 +24,22 @@
                                 <input type="text" [(ngModel)]="name" name="nameInput" class="form-control">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 text-end">
+                                <button class="btn btn-primary" (click)="save()">Guardar</button>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="valid_form">
+                            <div class="col-md-8">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error!</strong> Es necesario llenar un nombre y seleccionar un permiso.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"> </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -48,7 +64,8 @@
                                                     <ng-container *ngFor="let subMenu of side.subMenus">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <input type="checkbox" name="checkbox" (click)="addPermission(subMenu)">
+                                                                <input type="checkbox" name="checkbox"
+                                                                    (click)="addPermission(subMenu)">
                                                                 {{subMenu.menuValue }}
                                                             </label>
                                                         </div>
@@ -57,7 +74,8 @@
                                                 <div class="" *ngIf="side.subMenus && side.subMenus.length == 0">
                                                     <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" name="checkbox" (click)="addPermission(side)">
+                                                            <input type="checkbox" name="checkbox"
+                                                                (click)="addPermission(side)">
                                                             {{side.menuValue }}
                                                         </label>
                                                     </div>

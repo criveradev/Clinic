@@ -32,3 +32,7 @@
     % ng g c medical/roles/add-role-user --skip-tests
     % ng g c medical/roles/edit-role-user --skip-tests
     % ng g c medical/roles/list-role-user --skip-tests
+
+# Generamos un service, que contendra todo los endpoint
+
+    % ng g s medical/roles/service/roles --skip-tests
