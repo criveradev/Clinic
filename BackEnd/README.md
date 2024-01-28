@@ -30,3 +30,7 @@
 # Politicas de acceso
 
     % php artisan make:policy UserPolicy --model=user
+
+# Crear controlador para endpoint de roles
+
+    % php artisan make:controller /Admin/Rol/RolesController --api
