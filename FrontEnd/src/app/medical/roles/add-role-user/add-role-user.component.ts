@@ -49,7 +49,8 @@ export class AddRoleUserComponent {
     this.valid_form = false;
     this.RoleService.storeRoles(data).subscribe((resp: any) => {
       console.log(resp);
-
+      this.name = '';
+      this.permissions = [];
     })
   }
 }

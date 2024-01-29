@@ -13,8 +13,7 @@ export class AuthService {
 
   user: any;
   token: any;
-  constructor(private router: Router, public http: HttpClient) 
-  {
+  constructor(private router: Router, public http: HttpClient) {
     this.getLocalStorage();
   }
 
@@ -28,6 +27,17 @@ export class AuthService {
       this.user = null;
       this.token = null;
     }
+  }
+
+  //Metodo para almacenar la informacion en localstorage.
+  saveLocalStorage(auth: any) {
+    if (auth && auth.access_token) {
+      localStorage.setItem("token", auth.access_token);
+      localStorage.setItem("user", JSON.stringify(auth.user));
+
+      return true;
+    }
+    return false;
   }
 
   //Metodo de autenticacion.
@@ -46,17 +56,7 @@ export class AuthService {
     );
   }
 
-  //Metodo para almacenar la informacion en localstorage.
-  saveLocalStorage(auth: any) {
-    if (auth && auth.access_token) {
-      localStorage.setItem("token", auth.access_token);
-      localStorage.setItem("user", JSON.stringify(auth.user));
-
-      return true;
-    }
-    return false;
-  }
-
+  //Metodo para cerrar sesion.
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");

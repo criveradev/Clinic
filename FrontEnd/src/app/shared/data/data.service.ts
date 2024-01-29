@@ -9,7 +9,7 @@ import { apiResultFormat } from '../models/models';
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getDoctorsList(): Observable<apiResultFormat> {
     return this.http.get<apiResultFormat>('assets/json/doctors-list.json').pipe(
@@ -204,7 +204,7 @@ export class DataService {
           hasSubRoute: true,
           showSubRoute: false,
           base: 'dashboard',
-          route:'dashboard',
+          route: 'dashboard',
           img: 'assets/img/icons/menu-icon-01.svg',
           subMenus: [
             {
@@ -225,7 +225,7 @@ export class DataService {
           ],
         },
         {
-          menuValue: 'Roles y Permisos',
+          menuValue: 'Roles',
           hasSubRoute: true,
           showSubRoute: false,
           base: 'gallery',
@@ -234,17 +234,17 @@ export class DataService {
           faIcon: true,
           subMenus: [
             {
+              menuValue: 'Listado Rol',
+              route: routes.listadoRole,
+              base: routes.listadoRole,
+              permission: 'list_rol',
+              show_nav: true,
+            },
+            {
               menuValue: 'Registrar Rol',
               route: routes.registerRole,
               base: routes.registerRole,
               permission: 'register_rol',
-              show_nav: true,
-            },
-            {
-              menuValue: 'Listado',
-              route: routes.listadoRole,
-              base: routes.listadoRole,
-              permission: 'list_rol',
               show_nav: true,
             },
             {
@@ -551,7 +551,7 @@ export class DataService {
     },
   ];
   // public sideBarList = [
-    
+
   // ];
 
   public carousel1 = [
@@ -618,111 +618,111 @@ export class DataService {
   ];
   public upcomingAppointments = [
     {
-      "no" : "R00001",
-      "patientName" : "Andrea Lalema",
-      "doctor" : "Dr.Jenny Smith",
-      "date" : "12.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-03.jpg"
-  },
-  {
-      "no" : "R00002",
-      "patientName" : "Cristina Groves",
-      "doctor" : "Dr.Angelica Ramos",
-      "date" : "13.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fever",
-      "img" : "assets/img/profiles/avatar-05.jpg"
-  },
-  {
-      "no" : "R00003",
-      "patientName" : "Bernardo",
-      "doctor" : "Dr.Martin Doe",
-      "date" : "14.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-04.jpg"
-  },
-  {
-      "no" : "R00004",
-      "patientName" : "Galaviz Lalema",
-      "doctor" : "Dr.Martin Doe",
-      "date" : "15.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fracture",
-      "img" : "assets/img/profiles/avatar-03.jpg"
-  },
-  {
-      "no" : "R00005",
-      "patientName" : "Dr.William Jerk",
-      "doctor" : "Dr.Angelica Ramos",
-      "date" : "16.05.2022 at",
-      "time" : "7.00 PM",
-      "disease" : "Fever",
-      "img" : "assets/img/profiles/avatar-02.jpg"
-  }
+      "no": "R00001",
+      "patientName": "Andrea Lalema",
+      "doctor": "Dr.Jenny Smith",
+      "date": "12.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-03.jpg"
+    },
+    {
+      "no": "R00002",
+      "patientName": "Cristina Groves",
+      "doctor": "Dr.Angelica Ramos",
+      "date": "13.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fever",
+      "img": "assets/img/profiles/avatar-05.jpg"
+    },
+    {
+      "no": "R00003",
+      "patientName": "Bernardo",
+      "doctor": "Dr.Martin Doe",
+      "date": "14.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-04.jpg"
+    },
+    {
+      "no": "R00004",
+      "patientName": "Galaviz Lalema",
+      "doctor": "Dr.Martin Doe",
+      "date": "15.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fracture",
+      "img": "assets/img/profiles/avatar-03.jpg"
+    },
+    {
+      "no": "R00005",
+      "patientName": "Dr.William Jerk",
+      "doctor": "Dr.Angelica Ramos",
+      "date": "16.05.2022 at",
+      "time": "7.00 PM",
+      "disease": "Fever",
+      "img": "assets/img/profiles/avatar-02.jpg"
+    }
   ];
   public recentPatients = [
     {
-      "no" : "R00001",
-      "patientName" : "Andrea Lalema",
-      "age" : "21",
-      "date" : "12.05.2022 at",
-      "dateOfBirth" : "07 January 2002",
-      "diagnosis" : "Heart attack",
-      "img" : "assets/img/profiles/avatar-02.jpg",
-      "triage" : "Non Urgent"
-  },
-  {
-      "no" : "R00002",
-      "patientName" : "Mark Hay Smith",
-      "age" : "23",
-      "date" : "13.05.2022 at",
-      "dateOfBirth" : "06 January 2002",
-      "diagnosis" : "Jaundice",
-      "img" : "assets/img/profiles/avatar-03.jpg",
-      "triage" : "Emergency"
-  },
-  {
-      "no" : "R00003",
-      "patientName" : "Cristina Groves",
-      "age" : "25",
-      "date" : "14.05.2022 at",
-      "dateOfBirth" : "10 January 2002",
-      "diagnosis" : "Malaria",
-      "img" : "assets/img/profiles/avatar-04.jpg",
-      "triage" : "Out Patient"
-  },
-  {
-      "no" : "R00004",
-      "patientName" : "Galaviz Lalema",
-      "age" : "21",
-      "date" : "15.05.2022 at",
-      "dateOfBirth" : "09 January 2002",
-      "diagnosis" : "Typhoid",
-      "img" : "assets/img/profiles/avatar-05.jpg",
-      "triage" : "Urgent"
-  }
+      "no": "R00001",
+      "patientName": "Andrea Lalema",
+      "age": "21",
+      "date": "12.05.2022 at",
+      "dateOfBirth": "07 January 2002",
+      "diagnosis": "Heart attack",
+      "img": "assets/img/profiles/avatar-02.jpg",
+      "triage": "Non Urgent"
+    },
+    {
+      "no": "R00002",
+      "patientName": "Mark Hay Smith",
+      "age": "23",
+      "date": "13.05.2022 at",
+      "dateOfBirth": "06 January 2002",
+      "diagnosis": "Jaundice",
+      "img": "assets/img/profiles/avatar-03.jpg",
+      "triage": "Emergency"
+    },
+    {
+      "no": "R00003",
+      "patientName": "Cristina Groves",
+      "age": "25",
+      "date": "14.05.2022 at",
+      "dateOfBirth": "10 January 2002",
+      "diagnosis": "Malaria",
+      "img": "assets/img/profiles/avatar-04.jpg",
+      "triage": "Out Patient"
+    },
+    {
+      "no": "R00004",
+      "patientName": "Galaviz Lalema",
+      "age": "21",
+      "date": "15.05.2022 at",
+      "dateOfBirth": "09 January 2002",
+      "diagnosis": "Typhoid",
+      "img": "assets/img/profiles/avatar-05.jpg",
+      "triage": "Urgent"
+    }
   ];
   public patientProfile = [
     {
-      date : "29/09/2022",
-      doctor : "Dr.Jenny Smith",
-      treatment : "Check up",
-      charges : "$ 60"
+      date: "29/09/2022",
+      doctor: "Dr.Jenny Smith",
+      treatment: "Check up",
+      charges: "$ 60"
     },
     {
-      date : "19/09/2022",
-      doctor : "Andrea Lalema",
-      treatment : "	Blood Test",
-      charges : "$ 50"
+      date: "19/09/2022",
+      doctor: "Andrea Lalema",
+      treatment: "	Blood Test",
+      charges: "$ 50"
     },
     {
-      date : "20/09/2022",
-      doctor : "Dr.William Stephin",
-      treatment : "Blood Pressure",
-      charges : "$ 30"
+      date: "20/09/2022",
+      doctor: "Dr.William Stephin",
+      treatment: "Blood Pressure",
+      charges: "$ 30"
     }
   ];
   public blogs = [

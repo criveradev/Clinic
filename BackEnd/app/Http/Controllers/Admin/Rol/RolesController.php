@@ -26,10 +26,11 @@ class RolesController extends Controller
         return response()->json([
             'roles' => $roles->map(function ($rol) {
                 return [
-                    'id'         => $rol,
-                    'name'       => $rol->name,
-                    'permission' => $rol->permissions,
-                    'created_at'  => $rol->created_at->format('m-d-Y h:i:s')
+                    'id'               => $rol,
+                    'name'             => $rol->name,
+                    'permission'       => $rol->permissions,
+                    'permission_pluck' => $rol->permissions->pluck('name'),
+                    'created_at'       => $rol->created_at->format('d-m-Y h:i:s')
                 ];
             })
         ]);
