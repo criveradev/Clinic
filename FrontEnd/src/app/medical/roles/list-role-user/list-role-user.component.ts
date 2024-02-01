@@ -15,7 +15,7 @@ export class ListRoleUserComponent {
   public showFilter = false;
   public searchDataValue = '';
   public lastIndex = 0;
-  public pageSize = 2;
+  public pageSize = 10;
   public totalData = 0;
   public skip = 0;// Minimi
   public limit: number = this.pageSize; //Maximo
@@ -26,6 +26,7 @@ export class ListRoleUserComponent {
   public pageSelection: Array<any> = [];
   public totalPages = 0;
   public role_generals: any = [];
+  public role_selected: any;
 
   constructor(public RolesService: RolesService) {
 
@@ -34,6 +35,9 @@ export class ListRoleUserComponent {
   // Funciones que queremos inicializar.
   ngOnInit() {
     this.getTableData();
+  }
+  selectRole(rol: any) {
+    this.role_selected = rol;
   }
 
   // Metodo que lista todos los roles.

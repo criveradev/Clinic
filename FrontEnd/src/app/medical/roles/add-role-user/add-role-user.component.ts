@@ -13,6 +13,8 @@ export class AddRoleUserComponent {
   name: string = '';
   permissions: any = [];
   valid_form: boolean = false;
+  valid_form_success: boolean = false;
+  text_validation: any = null;
 
   constructor(public DataService: DataService, public RoleService: RolesService) {
 
@@ -38,6 +40,7 @@ export class AddRoleUserComponent {
   };
 
   save() {
+    this.valid_form = false;
     if (!this.name || this.permissions.length == 0) {
       this.valid_form = true;
       return;
@@ -46,11 +49,25 @@ export class AddRoleUserComponent {
       name: this.name,
       permissions: this.permissions
     }
-    this.valid_form = false;
+
+    this.valid_form_success = false;
+    this.text_validation = null;
     this.RoleService.storeRoles(data).subscribe((resp: any) => {
       console.log(resp);
-      this.name = '';
-      this.permissions = [];
+      if (resp.message == 403) {
+        this.text_validation = resp.message_text;
+      } else {
+        this.name = '';
+        this.permissions = [];
+        this.valid_form_success = true;
+
+        let SIDE_BAR = this.sideBar;
+        this.sideBar = [];
+        setTimeout(() => {
+          this.sideBar = SIDE_BAR;
+        }, 50);
+      }
+
     })
   }
 }
