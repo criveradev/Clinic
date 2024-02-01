@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +16,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        $this->authorize('create',User::class);
+        $this->authorize('create', User::class);
 
         $validator = Validator::make(request()->all(), [
             'name' => 'required',
@@ -68,11 +67,22 @@ class AuthController extends Controller
 
     protected function respondWithToken($token)
     {
+        $permissionNames = auth('api')->user()->getAllPermissions()->map(function($permName){
+           return $permName->name;
+        });
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
             'expires_in'   => auth()->factory()->getTTL() * 60,
-            'user'         => auth('api')->user()
+            'user'         => [
+                'name'        => auth('api')->user()->name,
+                'surname'     => auth('api')->user()->surname,
+                // 'avatar'   => auth('api')->user()->avatar,
+                'email'       => auth('api')->user()->email,
+                'roles'       => auth('api')->user()->getRoleNames(),
+                'permissions' => $permissionNames
+
+            ],
 
         ]);
     }
