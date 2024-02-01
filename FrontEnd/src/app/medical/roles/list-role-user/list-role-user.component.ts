@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Sort } from '@angular/material/sort';
+import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { RolesService } from '../service/roles.service';
 
@@ -11,6 +10,7 @@ import { RolesService } from '../service/roles.service';
 export class ListRoleUserComponent {
   public rolesList: any = [];
   dataSource!: MatTableDataSource<any>;
+  @ViewChild('closeButton') closeButton: any;
 
   public showFilter = false;
   public searchDataValue = '';
@@ -36,9 +36,7 @@ export class ListRoleUserComponent {
   ngOnInit() {
     this.getTableData();
   }
-  selectRole(rol: any) {
-    this.role_selected = rol;
-  }
+
 
   // Metodo que lista todos los roles.
   private getTableData(): void {
@@ -68,6 +66,25 @@ export class ListRoleUserComponent {
     this.calculateTotalPages(this.totalData, this.pageSize);
 
 
+  }
+
+  selectRole(rol: any) {
+    this.role_selected = rol;
+  }
+
+  deleteRole() {
+    this.RolesService.destroyRoles(this.role_selected.id).subscribe((resp: any) => {
+      if (resp.message == 403) {
+
+      }
+      let INDEX = this.rolesList.findIndex((item: any) => item.id == this.role_selected.id);// Buscamos el indice o ubicacion del rol que acabamos de eliminar.
+      if (INDEX != -1) {
+        this.rolesList.splice(INDEX, 1);
+        this.role_selected = null;
+        this.closeButton.nativeElement.click();
+
+      }
+    });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

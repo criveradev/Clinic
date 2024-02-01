@@ -94,6 +94,9 @@ class RolesController extends Controller
     public function destroy(string $id)
     {
         $role = Role::findOrFail($id);
+        if ($role->users->count() > 0) {
+            return response()->json(Response::HTTP_FORBIDDEN);
+        }
         $role->delete();
 
         return response()->json([
