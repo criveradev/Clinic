@@ -336,7 +336,7 @@ export class routes {
     return this.baseUrl + '/staff/staff-leave';
   }
   public static get staffList(): string {
-    return this.baseUrl + '/staff/staff-list';
+    return this.baseUrl + '/staff/list-staff';
   }
   public static get staffProfile(): string {
     return this.baseUrl + '/staff/staff-profile';
