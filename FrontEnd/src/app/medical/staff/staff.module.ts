@@ -9,6 +9,7 @@ import { ListStaffComponent } from './list-staff/list-staff.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import { RouterModule } from '@angular/router';
     StaffComponent,
     AddStaffComponent,
     EditStaffComponent,
-    ListStaffComponent
+
   ],
   imports: [
     CommonModule,
     StaffRoutingModule,
+    SharedModule,
     // ->
     FormsModule,
     ReactiveFormsModule,

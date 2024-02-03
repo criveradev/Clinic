@@ -76,7 +76,7 @@ class AuthController extends Controller
             'expires_in'   => auth()->factory()->getTTL() * 60,
             'user'         => [
                 'name'        => auth('api')->user()->name,
-                'surname'     => auth('api')->user()->surname,
+                'lastname'     => auth('api')->user()->lastname,
                 // 'avatar'   => auth('api')->user()->avatar,
                 'email'       => auth('api')->user()->email,
                 'roles'       => auth('api')->user()->getRoleNames(),
