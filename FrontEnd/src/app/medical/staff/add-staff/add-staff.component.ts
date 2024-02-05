@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StaffService } from '../service/staff.service';
 interface data {
   value: string;
 }
@@ -6,10 +7,10 @@ interface data {
 @Component({
   selector: 'app-add-staff',
   templateUrl: './add-staff.component.html',
-  styleUrls: ['./add-staff.component.scss']
+  styleUrls: ['./add-staff.component.scss'],
 })
 export class AddStaffComponent {
-  public selectedValue !: string;
+  public selectedValue!: string;
   public firstName: string = '';
   public lastName: string = '';
   public mobile: string = '';
@@ -22,11 +23,11 @@ export class AddStaffComponent {
   public designation: string = '';
   public address: string = '';
 
-  constructor(){
+  constructor(public StaffService: StaffService) {}
 
+  ngOnInit(): void {
+    // this.StaffService.listUsers().subscribe((resp: any) => {
+    //   console.log(resp);
+    // });
   }
-  ngOnInit(){
-    
-  }
-
 }

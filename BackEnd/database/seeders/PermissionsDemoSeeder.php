@@ -92,7 +92,7 @@ class PermissionsDemoSeeder extends Seeder
         // $user->assignRole($role2);
 
         $user = \App\Models\User::factory()->create([
-            'name' => 'Claudio Rivera',
+            'name' => 'Claudio',
             'email' => 'crivera@app.com'
         ]);
         $user->assignRole($role3);

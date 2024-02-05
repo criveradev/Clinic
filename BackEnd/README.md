@@ -34,3 +34,7 @@
 # Crear controlador para endpoint de roles
 
     % php artisan make:controller /Admin/Rol/RolesController --api
+
+# Crear controlador para endpoint de staff
+
+    % php artisan make:controller /Admin/Staff/StaffController --api

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Rol\RolesController;
+use App\Http\Controllers\Admin\Staff\StaffController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,6 @@ Route::group(['middleware' => 'auth:api'], function ($router) {
 
     Route::apiResource('roles', RolesController::class);
 
+    Route::get('staff/config', [StaffController::class, 'config']);
+    Route::apiResource('staff', StaffController::class);
 });
