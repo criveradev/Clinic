@@ -7,8 +7,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Creación DB
+# Instalamos las dependencias
 
+    % composer install
+    % composer update
+
+# Generar archivo .env
+
+    % cp .env.example .env
+
+#  Generar Key
+
+    % php artisan key:generate
+    
+# Creación DB
+ 
     % php artisan migrate
 
 # Instalación JWT
