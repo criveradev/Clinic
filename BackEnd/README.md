@@ -9,45 +9,49 @@
 
 # Instalamos las dependencias
 
-    % composer install
-    % composer update
+    composer install
+    composer update
 
 # Generar archivo .env
 
-    % cp .env.example .env
+    cp .env.example .env
 
 #  Generar Key
 
-    % php artisan key:generate
+    php artisan key:generate
     
 # Creación DB
  
-    % php artisan migrate
+    php artisan migrate
 
 # Instalación JWT
     
-    % https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
+    composer require tymon/jwt-auth
+    php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+    php artisan jwt:secret
+    
 
 # Correr servidor BackEnd
 
-    % php artisan serve
+    php artisan serve
 
 # Revisar las rutas
 
-    % php artisan route:list --path=api
+    php artisan route:list --path=api
 
 # Roles y permisos
-     % https://spatie.be/docs/laravel-permission/v6/installation-laravel
-     % php artisan migrate:refresh --seed --seeder=PermissionsDemoSeeder 
+
+    https://spatie.be/docs/laravel-permission/v6/installation-laravel
+    php artisan migrate:refresh --seed --seeder=PermissionsDemoSeeder 
 
 # Politicas de acceso
 
-    % php artisan make:policy UserPolicy --model=user
+    php artisan make:policy UserPolicy --model=user
 
 # Crear controlador para endpoint de roles
 
-    % php artisan make:controller /Admin/Rol/RolesController --api
+    php artisan make:controller /Admin/Rol/RolesController --api
 
 # Crear controlador para endpoint de staff
 
-    % php artisan make:controller /Admin/Staff/StaffController --api
+    php artisan make:controller /Admin/Staff/StaffController --api
